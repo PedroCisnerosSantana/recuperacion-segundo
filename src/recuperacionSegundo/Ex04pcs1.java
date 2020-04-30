@@ -35,7 +35,7 @@ public class Ex04pcs1 {
 			int randomKey = new Random().nextInt(values.size());
 			String randomEs = keys.get(randomKey);
 			
-			System.out.print("¿" + randomEng + " es " + randomEs+ "? Conteste (s/n): ");
+			System.out.print("Â¿" + randomEng + " es " + randomEs+ "? Conteste (s/n): ");
 			char resp = s.next().toLowerCase().charAt(0);
 			
 			if (translate.get(randomEng).equals(randomEs)) {
@@ -58,7 +58,6 @@ public class Ex04pcs1 {
 		for (String i : repasa.keySet()) {
 			System.out.println(i + " : " +repasa.get(i));
 		}
-		
 		s.close();
 	}
 
