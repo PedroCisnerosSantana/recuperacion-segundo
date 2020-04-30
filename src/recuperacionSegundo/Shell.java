@@ -12,11 +12,11 @@ public class Shell {
 	// funcion para imprimir la lista de comandos
 	public void help() {
 		println("Comandos disponibles:");
-		println("listar (comerciales/cliente) - Lista los comerciales o clientes");
+		println("listar (comercial/cliente) - Lista los comerciales o clientes");
 		println("alta (comercial/cliente) - Crea un nuevo comercial o cliente");
 		println("borrar (comercial/cliente) - Borra un comercial o cliente de la lista");
 		println("modifica (comercial/cliente) - Modifica los atributos de un comercial o cliente");
-		println("compra [nombre comercial] [nombre producto] [cantidad] - Compra el producto al comercial indicado");
+		println("compra [correo comercial] [nombre producto] [cantidad] - Compra el producto al comercial indicado");
 		println("salir - Sale del programa");
 	}
 	
@@ -69,7 +69,7 @@ public class Shell {
 			catalogoUsuario.put(new Usuario(nombreCliente, correoCliente, tlfCliente));
 		} else if (comando.length == 5) {
 			// Modo automatico
-			catalogoUsuario.put(new Usuario(comando[2], comando[3], comando[4]));
+			catalogoUsuario.put(new Usuario(comando[2].replaceAll("_", " "), comando[3], comando[4].replaceAll("_", "-")));
 		}
 		
 	}
@@ -84,7 +84,7 @@ public class Shell {
 			catalogoComercial.put(new Comercial(nombreComercial, correoComercial, puestoComercial));
 		} else if (comando.length == 5) {
 			// Modo automatico
-			catalogoComercial.put(new Comercial(comando[2], comando[3], comando[4]));
+			catalogoComercial.put(new Comercial(comando[2].replaceAll("_", " "), comando[3], comando[4]));
 		}
 	}
 	
@@ -202,10 +202,10 @@ public class Shell {
 			}
 			switch (comando[3].toLowerCase()) {
 			case "nombre":
-				usuario.setNombre(comando[4]);
+				usuario.setNombre(comando[4].replaceAll("_", " "));
 				break;
 			case "telefono":
-				usuario.setTelf(comando[4]);
+				usuario.setTelf(comando[4].replaceAll("_", "-"));
 				break;
 			case "correo":
 				usuario.setCorreo(comando[4]);
@@ -254,10 +254,10 @@ public class Shell {
 			}
 			switch (comando[3].toLowerCase()) {
 			case "nombre":
-				comercial.setNombre(comando[4]);
+				comercial.setNombre(comando[4].replaceAll("_", " "));
 				break;
 			case "cargo":
-				comercial.setPuesto(comando[4]);
+				comercial.setPuesto(comando[4].replaceAll("_", " "));
 				break;
 			case "correo":
 				comercial.setCorreo(comando[4]);
@@ -294,6 +294,11 @@ public class Shell {
  			Articulo art = new Articulo(nombreProducto, cantidadProducto);
  			Comercial comercial = catalogoComercial.get(correoComercial);
  			comercial.addSale(art);
+ 		} else if (comando.length == 4) {
+ 			int cantidad = Integer.parseInt(comando[3]);
+ 			Articulo art = new Articulo(comando[2].replaceAll("_", " "), cantidad);
+ 			Comercial comercial = catalogoComercial.get(comando[1]);
+ 			comercial.addSale(art);
  		}
  		
  	}
@@ -327,6 +332,9 @@ public class Shell {
 				break;
 			case "compra":
 				compra(comando);
+				break;
+			case "help":
+				help();
 				break;
 
 			default:
