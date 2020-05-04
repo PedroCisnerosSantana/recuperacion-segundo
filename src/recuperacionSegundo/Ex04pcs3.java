@@ -43,10 +43,12 @@ public class Ex04pcs3 {
 	}
 	
 	private static void precarga() {
-		art.add(new GestisimalArt("1", "Preload", 50, 60, 2));
-		art.add(new GestisimalArt("0", "Test", 50, 60, 2));
+		art.add(new GestisimalArt("1", "Preload", 10, 60, 2));
+		art.add(new GestisimalArt("0", "Test", 45, 50, 2));
 		art.add(new GestisimalArt("b", "Test", 50, 60, 2));
 		art.add(new GestisimalArt("a", "Test", 50, 60, 2));
+		art.add(new GestisimalArt("caronte", "Test", 10, 30, 60));
+		art.add(new GestisimalArt("sefini", "Test", 1, 3, 34));
 	}
 
 	@SuppressWarnings({ "rawtypes", "unused" })
@@ -82,7 +84,8 @@ public class Ex04pcs3 {
 			println("4. Modificación");
 			println("5. Entrada de mercancía");
 			println("6. Venta");
-			println("7. Salir");
+			println("7. Listar articulos bajos de stock");
+			println("8. Salir");
 			opcion = Integer.parseInt(scanLine("Introduzca una opción: "));
 
 			switch (opcion) {
@@ -303,10 +306,23 @@ public class Ex04pcs3 {
 				} while (opcion2 == 1);
 
 				break;
+				
+			case 7:
+				int limite = Integer.parseInt(scanLine("Introduce el numero limite de stock: "));
+				while (limite < 0) {
+					println("El limite debe ser al menos 0");
+					limite = Integer.parseInt(scanLine("Introduce el numero limite de stock: "));
+				}
+				for (GestisimalArt aux : art) {
+					if (aux.getStock() < limite) {
+						println(aux);
+					}
+				}
+				break;
 
 			} // switch (menú principal)
 
-		} while (opcion != 7);
+		} while (opcion != 8);
 
 	} // main
 
