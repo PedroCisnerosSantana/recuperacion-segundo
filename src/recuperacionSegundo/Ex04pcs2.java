@@ -49,6 +49,7 @@ public class Ex04pcs2 {
 		System.out.println(mezclaListas(lista2, lista1));
 		System.out.println(mezclaListas(lista1, lista3));
 		System.out.println(mezclaListas(lista2, lista3));
+		System.out.println(mezclaListas(lista3, lista1));
 
 	}
 
