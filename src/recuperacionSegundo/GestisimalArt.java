@@ -6,7 +6,7 @@ public class GestisimalArt {
 	private double sellPrice;
 	private double buyPrice;
 	private int stock;
-	
+
 	public GestisimalArt(String code, String desc, double sp, double bp, int stock) {
 		this.code = code;
 		this.desc = desc;
@@ -14,7 +14,7 @@ public class GestisimalArt {
 		this.buyPrice = bp;
 		this.stock = stock;
 	}
-	
+
 	public GestisimalArt(String code) {
 		this.code = code;
 	}
@@ -58,17 +58,16 @@ public class GestisimalArt {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	
+
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("=================================="
-				+ "\nCode: %s"
-				+ "\nDescription: %s"
-				+ "\nSell price: %d"
-				+ "\nBuy proce: %d"
-				+ "\nStock: %d"
-				+ "\n==================================", this.code, this.desc, this.sellPrice, this.buyPrice, this.stock));
-		return sb.toString();
+		String cadena = "==========================================";
+		cadena += "\nCode: " + this.code;
+		cadena += "\nDescription: " + this.desc;
+		cadena += "\nBuy price: " + this.sellPrice;
+		cadena += "\nSell price: " + this.buyPrice;
+		cadena += "\nStock: " + this.stock + " units";
+		cadena += "\n==========================================";
+		return cadena;
 	}
 }
