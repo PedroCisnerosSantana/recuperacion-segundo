@@ -40,9 +40,14 @@ public class Ex04pcs3 {
 		}
 		return -1;
 	}
+	
+	private static void precarga() {
+		art.add(new GestisimalArt("1", "Preload", 50, 60, 2));
+	}
 
 	@SuppressWarnings({ "rawtypes", "unused" })
 	public static void main(String[] args) {
+		precarga();
 		HashMap<String, Integer> lineasFra = new HashMap<String, Integer>();
 
 		int opcion;
@@ -79,7 +84,7 @@ public class Ex04pcs3 {
 			switch (opcion) {
 
 			case 1: // Listado
-				println("\nLISTADO\n=======");
+				println("\nLISTADO\n");
 
 				for (GestisimalArt aux : art) {
 					println(aux);
@@ -127,14 +132,13 @@ public class Ex04pcs3 {
 
 			case 4: // Modificación
 				println("\nMODIFICACIÓN\n============");
-				print("Por favor, introduzca el código del artículo cuyos datos desea cambiar: ");
+				codigoIntro = scanLine("Por favor, introduzca el código del artículo cuyos datos desea cambiar: ");
 
-				do {
-					codigoIntro = s.nextLine();
+				while (posicion(codigoIntro) == -1) {
 					if (posicion(codigoIntro) != -1) {
-						println("No hay ningún artículo con ese código.\nIntroduzca otro código: ");
+						codigoIntro = scanLine("No hay ningún artículo con ese código.\nIntroduzca otro código: ");
 					}
-				} while (posicion(codigoIntro) == -1);
+				} 
 
 				i = posicion(codigoIntro);
 
@@ -152,14 +156,14 @@ public class Ex04pcs3 {
 					art.get(i).setDesc(descripcionIntro);
 				}
 
-				println("Precio de compra: " + art.get(i).getBuyPrice());
-				precioDeCompraIntroString = scanLine("Nuevo precio de compra: ");
+				println("Precio de venta: " + art.get(i).getBuyPrice());
+				precioDeCompraIntroString = scanLine("Nuevo precio de venta: ");
 				if (!precioDeCompraIntroString.equals("")) {
 					art.get(i).setBuyPrice(Double.parseDouble(precioDeCompraIntroString));
 				}
 
-				println("Precio de venta: " + art.get(i).getSellPrice());
-				precioDeVentaIntroString = scanLine("Nuevo precio de venta: ");
+				println("Precio de compra: " + art.get(i).getSellPrice());
+				precioDeVentaIntroString = scanLine("Nuevo precio de compra: ");
 				if (!precioDeVentaIntroString.equals("")) {
 					art.get(i).setSellPrice(Double.parseDouble(precioDeVentaIntroString));
 				}
@@ -176,16 +180,16 @@ public class Ex04pcs3 {
 				println("\nENTRADA DE MERCANCÍA\n====================");
 				codigoIntro = scanLine("Por favor, introduzca el código del artículo: ");
 
-				do {
-					codigoIntro = s.nextLine();
+				while (posicion(codigoIntro) == -1) {
+					System.out.println("ALL GOOD");
 					if (posicion(codigoIntro) != -1) {
-						println("No hay ningún artículo con ese código.\nIntroduzca otro código: ");
+						codigoIntro = scanLine("No hay ningún artículo con ese código.\nIntroduzca otro código: ");
 					}
-				} while (posicion(codigoIntro) == -1);
+				}
 
 				i = posicion(codigoIntro);
 
-				println("Entrada de mercancía del siguiente artículo: " + art.get(i));
+				println("Entrada de mercancía del siguiente artículo: \n" + art.get(i));
 				stockIntro = Integer.parseInt(scanLine("Introduzca el número de unidades que entran al almacén: "));
 				art.get(i).setStock(stockIntro + art.get(i).getStock());
 				println("La mercancía ha entrado en el almacén.");
