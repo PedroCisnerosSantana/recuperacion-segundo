@@ -1,6 +1,8 @@
 package recuperacionSegundo;
 
-public class GestisimalArt {
+import java.lang.Comparable;
+
+public class GestisimalArt implements Comparable<GestisimalArt> {
 	private String code;
 	private String desc;
 	private double sellPrice;
@@ -58,6 +60,12 @@ public class GestisimalArt {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
+	@Override
+	public int compareTo(GestisimalArt o) {
+		return this.getCode().compareTo(o.getCode());
+	}
+	
 
 	@Override
 	public String toString() {
@@ -70,4 +78,6 @@ public class GestisimalArt {
 		cadena += "\n==========================================";
 		return cadena;
 	}
+
+	
 }

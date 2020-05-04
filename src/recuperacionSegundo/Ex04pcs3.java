@@ -2,6 +2,7 @@ package recuperacionSegundo;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -43,6 +44,9 @@ public class Ex04pcs3 {
 	
 	private static void precarga() {
 		art.add(new GestisimalArt("1", "Preload", 50, 60, 2));
+		art.add(new GestisimalArt("0", "Test", 50, 60, 2));
+		art.add(new GestisimalArt("b", "Test", 50, 60, 2));
+		art.add(new GestisimalArt("a", "Test", 50, 60, 2));
 	}
 
 	@SuppressWarnings({ "rawtypes", "unused" })
@@ -84,11 +88,28 @@ public class Ex04pcs3 {
 			switch (opcion) {
 
 			case 1: // Listado
+				// SORT
 				println("\nLISTADO\n");
-
+				Collections.sort(art);
 				for (GestisimalArt aux : art) {
 					println(aux);
 				}
+				
+				int totalArts = 0;
+				int compraMedio = 0;
+				int ventaMedio = 0;
+				int margenBene;
+				
+				for (GestisimalArt aux : art) {
+					totalArts+=aux.getStock();
+					compraMedio+=aux.getBuyPrice();
+					ventaMedio+=aux.getSellPrice();
+				}
+				System.out.printf("Total de articulos: %d\n"
+						+ "Precio de compra medio: %d\n"
+						+ "Precio de venta medio: %d\n"
+						+ "Margen de beneficio: %d\n", totalArts, compraMedio/art.size(), ventaMedio/art.size(), compraMedio-ventaMedio);
+				
 				break;
 
 			case 2: // Alta
