@@ -99,9 +99,9 @@ public class Ex04pcs3 {
 				}
 				
 				int totalArts = 0;
-				int compraMedio = 0;
-				int ventaMedio = 0;
-				int margenBene;
+				double compraMedio = 0;
+				double ventaMedio = 0;
+				double margenBene;
 				
 				for (GestisimalArt aux : art) {
 					totalArts+=aux.getStock();
@@ -109,9 +109,9 @@ public class Ex04pcs3 {
 					ventaMedio+=aux.getSellPrice();
 				}
 				System.out.printf("Total de articulos: %d\n"
-						+ "Precio de compra medio: %d\n"
-						+ "Precio de venta medio: %d\n"
-						+ "Margen de beneficio: %d\n", totalArts, compraMedio/art.size(), ventaMedio/art.size(), compraMedio-ventaMedio);
+						+ "Precio de compra medio: %.2f\n"
+						+ "Precio de venta medio: %.2f\n"
+						+ "Margen de beneficio: %.2f\n", totalArts, compraMedio/(double)(art.size()), ventaMedio/(double)(art.size()), compraMedio-ventaMedio);
 				
 				break;
 
@@ -314,7 +314,7 @@ public class Ex04pcs3 {
 					limite = Integer.parseInt(scanLine("Introduce el numero limite de stock: "));
 				}
 				for (GestisimalArt aux : art) {
-					if (aux.getStock() < limite) {
+					if (aux.getStock() <= limite) {
 						println(aux);
 					}
 				}
